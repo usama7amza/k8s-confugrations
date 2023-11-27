@@ -1,0 +1,10 @@
+apiVersion: v1
+data:
+  database_url: svc-mngo-db
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2023-11-26T23:12:15Z"
+  name: config
+  namespace: default
+  resourceVersion: "98064"
+  uid: 1683a6f6-4a4c-4f90-b1c8-fc33e1926862

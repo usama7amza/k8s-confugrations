@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: mngo-db
+  name: mngo-db
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mngo-db
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: mngo-db
+    spec:
+      containers:
+      - image: mongo
+        imagePullPolicy: Always
+        name: mongo
+        ports:
+        - containerPort: 27017
+          protocol: TCP
+        env:
+          - name: MONGO_INITDB_ROOT_USERNAME 
+            valueFrom:
+               secretKeyRef:
+                 name: secret-mng-db
+                 key: mongo-root-username
+          - name: MONGO_INITDB_ROOT_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: secret-mng-db
+                key: mongo-root-password  
+    
